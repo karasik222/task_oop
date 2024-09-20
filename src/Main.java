@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.Comparator;
 public class Main {
     public static void main(String[] args) {
         /*Задача1
@@ -121,15 +117,49 @@ public class Main {
         System.out.println("\nПродукты после удаления:");
         System.out.println(store);
         */
+        /*Задача12
+            PaymentSystem creditCardPayment = new CreditCard();
+            PaymentSystem payPalPayment = new PayPal();
+            creditCardPayment.pay(1500.0);
+            creditCardPayment.refund(500.0);
+            payPalPayment.pay(2000.0);
+            payPalPayment.refund(800.0);
 
+         */
+        /*Задача13
+        UniqueID ob1 = new UniqueID();
+        UniqueID ob2 = new UniqueID();
+        UniqueID ob3 = new UniqueID();
+        System.out.println("ID первого объекта:" + ob1.getID());
+        System.out.println("ID первого объекта:" + ob2.getID());
+        System.out.println("ID первого объекта:"+ ob3.getID());
+         */
+        /*Задача13
+        Point p1 = new Point(1, 5);
+        Point p2 = new Point(5, 1);
+        Rectangle rectangle = new Rectangle (p1, p2);
+        System.out.println(rectangle);
+        System.out.println("Площадь прямоугольника: " + rectangle.getArea());
+         */
+        ComplexNumber c1 = new ComplexNumber(4, 5);
+        ComplexNumber c2 = new ComplexNumber(2, 3);
 
+        ComplexNumber sum = c1.add(c2);
+        ComplexNumber difference = c1.subtract(c2);
+        ComplexNumber product = c1.multiply(c2);
+        ComplexNumber quotient = c1.divide(c2);
+
+        System.out.println("Сумма: " + sum);
+        System.out.println("Разность: " + difference);
+        System.out.println("Произведение: " + product);
+        System.out.println("Частное: " + quotient);
     }
 }
             /*Задача1
            class Person {
-               private String name;    // "Имя"
-               private int age;        // "Возраст"
-               private String gender;  // "Пол"
+               private String name;
+               private int age;
+               private String gender;
 
                public Person(String name, int age, String gender) {
                    this.name = name;
@@ -353,8 +383,8 @@ public class Main {
     *////////////////////////////////
         /*Задача6
         class BankAccount {
-            private String accountNumber; // Номер счёта
-            private double balance;       // Баланс счёта
+            private String accountNumber;
+            private double balance;
 
             public BankAccount(String accountNumber, double initialBalance) {
                 this.accountNumber = accountNumber;
@@ -468,9 +498,9 @@ public class Main {
     *////////////////////////////////
             /*Задача10
             class Student {
-                private String name;  // Имя студента
-                private String group; // Группа студента
-                private double grade; // Успеваемость студента
+                private String name;
+                private String group;
+                private double grade;
                 public Student(String name, String group, double grade) {
                     this.name = name;
                     this.group = group;
@@ -539,7 +569,7 @@ public class Main {
                 }
             }
     *////////////////////////////////
-            //Задача11
+            /*Задача11
             class Product {
                 private String name;
                 private double price;
@@ -619,10 +649,145 @@ public class Main {
                 }
             }
 
+    *////////////////////////////////
+            /*Задача12
+            interface PaymentSystem {
+                void pay(double amount);
+                void refund(double amount);
+            }
 
+            class CreditCard implements PaymentSystem {
 
+                @Override
+                public void pay(double amount) {
+                    System.out.println("Оплата " + amount + " руб. с помощью кредитной карты.");
+                }
 
+                @Override
+                public void refund(double amount) {
+                    System.out.println("Возврат " + amount + " руб. на кредитную карту.");
+                }
+            }
 
+            class PayPal implements PaymentSystem {
+
+                @Override
+                public void pay(double amount) {
+                    System.out.println("Оплата " + amount + " руб. с помощью PayPal.");
+                }
+
+                @Override
+                public void refund(double amount) {
+                    System.out.println("Возврат " + amount + " руб. через PayPal.");
+                }
+            }
+    *////////////////////////////////
+            /*Задача13
+            class UniqueID {
+                private static int currentID = 0;
+                private int id;
+
+                public UniqueID() {
+                    this.id = generateID();
+                }
+
+                private static int generateID() {
+                    return ++currentID;
+                }
+
+                public int getID() {
+                    return id;
+                }
+
+                @Override
+                public String toString() {
+                    return "UniqueID{" + "id=" + id + '}';
+                }
+            }
+    *////////////////////////////////
+            /*Задача14
+            class Point {
+                private int x;
+                private int y;
+
+                public Point(int x, int y) {
+                    this.x = x;
+                    this.y = y;
+                }
+
+                public int getX() {
+                    return x;
+                }
+
+                public int getY() {
+                    return y;
+                }
+                @Override
+                public String toString() {
+                    return "(" + x + ", " + y + ")";
+                }
+
+            }
+            class Rectangle {
+                private Point topLeft;
+                private Point bottomRight;
+
+                public Rectangle(Point topLeft, Point bottomRight) {
+                    this.topLeft = topLeft;
+                    this.bottomRight = bottomRight;
+                }
+
+                public int getArea() {
+                    int width = Math.abs(bottomRight.getX() - topLeft.getX());
+                    int height = Math.abs(topLeft.getY() - bottomRight.getY());
+                    return width * height;
+                }
+
+                @Override
+                public String toString() {
+                    return "Прямоугольник с вершинами " + topLeft + " и " + bottomRight;
+                }
+            }
+    *////////////////////////////////
+            class ComplexNumber {
+                private double real;  // Действительная часть
+                private double imaginary; // Мнимая часть
+
+                public ComplexNumber(double real, double imaginary) {
+                    this.real = real;
+                    this.imaginary = imaginary;
+                }
+
+                public ComplexNumber add(ComplexNumber other) {
+                    double newReal = this.real + other.real;
+                    double newImaginary = this.imaginary + other.imaginary;
+                    return new ComplexNumber(newReal, newImaginary);
+                }
+
+                public ComplexNumber subtract(ComplexNumber other) {
+                    double newReal = this.real - other.real;
+                    double newImaginary = this.imaginary - other.imaginary;
+                    return new ComplexNumber(newReal, newImaginary);
+                }
+
+                public ComplexNumber multiply(ComplexNumber other) {
+                    double newReal = this.real * other.real - this.imaginary * other.imaginary;
+                    double newImaginary = this.real * other.imaginary + this.imaginary * other.real;
+                    return new ComplexNumber(newReal, newImaginary);
+                }
+
+                public ComplexNumber divide(ComplexNumber other) {
+                    double denominator = other.real * other.real + other.imaginary * other.imaginary;
+                    double newReal = (this.real * other.real + this.imaginary * other.imaginary) / denominator;
+                    double newImaginary = (this.imaginary * other.real - this.real * other.imaginary) / denominator;
+                    return new ComplexNumber(newReal, newImaginary);
+                }
+
+                @Override
+                public String toString() {
+                    return real + " + " + imaginary + "i";
+                }
+            }
 
 
 
